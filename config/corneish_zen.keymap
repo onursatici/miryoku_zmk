@@ -10,3 +10,11 @@
     zmk,matrix_transform = &default_transform;
   };
 };
+
+// Disable the TAP (gaming) layer entirely: neutralise its activation key
+// (&u_to_U_TAP, present on every layer-switch row) so the keyboard can never
+// land in TAP. The behavior is defined in miryoku_double_tap_guard.dtsi via the
+// miryoku.dtsi include above, so this override must come after it.
+&u_to_U_TAP {
+    bindings = <&none>, <&none>;
+};
