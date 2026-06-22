@@ -155,7 +155,9 @@ jobs:
             modules="${{ matrix.modules }}"
           fi
 
-          run_name=`echo $run_name | tr ' ' '-'`
+          # Sanitise chars not allowed in GitHub Actions artifact names.
+          # HWMv2 board targets contain '/' and '@' (e.g. corneish_zen_left@1.0.0//zmk).
+          run_name=`echo $run_name | tr ' /@' '-__'`
           echo "run_name=$run_name" >> $GITHUB_OUTPUT
 
           echo "::endgroup::"
